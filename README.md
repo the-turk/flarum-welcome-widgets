@@ -1,5 +1,7 @@
 # Welcome Widgets
 
+[![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/the-turk/flarum-welcome-widgets/blob/master/LICENSE) [![Latest Stable Version](https://img.shields.io/packagist/v/the-turk/flarum-welcome-widgets.svg)](https://packagist.org/packages/the-turk/flarum-welcome-widgets) [![Total Downloads](https://img.shields.io/packagist/dt/the-turk/flarum-welcome-widgets.svg)](https://packagist.org/packages/the-turk/flarum-welcome-widgets)
+
 Lets users know what's been changed since their last visit. And it looks damn cool with custom themes. And it is fully responsive.
 
 ![Welcome Widgets](https://i.ibb.co/Vj12cG3/stats.png)
@@ -25,7 +27,7 @@ Just enable the extension.
 
 ## Links
 
-- [Flarum Discuss post](https://discuss.flarum.org/)
+- [Flarum Discuss post](https://discuss.flarum.org/d/24496-welcome-widgets)
 - [Source code on GitHub](https://github.com/the-turk/flarum-welcome-widgets)
 - [Changelog](https://github.com/the-turk/flarum-welcome-widgets/blob/master/CHANGELOG.md)
 - [Report an issue](https://github.com/the-turk/flarum-welcome-widgets/issues)
