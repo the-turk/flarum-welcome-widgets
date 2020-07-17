@@ -32,9 +32,9 @@ app.initializers.add('the-turk-welcome-widgets', () => {
         localeKey = 'goodAfternoon';
       } else if (currentHour >= splitEvening) {
         localeKey = 'goodEvening';
+      } else {
+        localeKey = 'goodMorning';
       }
-
-      localeKey = 'goodMorning';
     }
 
     return app.translator.trans(localePrefix + localeKey, username_obj);
