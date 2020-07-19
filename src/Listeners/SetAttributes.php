@@ -12,7 +12,6 @@ use Flarum\User\Event\LoggedIn;
 use Illuminate\Contracts\Events\Dispatcher;
 use TheTurk\WelcomeWidgets\Api\Serializers\WelcomeWidgetsSerializer;
 use TheTurk\WelcomeWidgets\Models\WelcomeWidgets;
-use Carbon\Carbon;
 
 class SetAttributes
 {
@@ -45,11 +44,11 @@ class SetAttributes
           $stats = new WelcomeWidgets;
           $stats->user_id = $event->user->id;
           $stats->previous_stats = json_encode($lastStats);
-          $stats->previous_login_at = Carbon::now();
+          $stats->previous_login_at = $event->user->last_seen_at;
         }
 
         $stats->last_stats = json_encode($lastStats);
-        $stats->last_login_at = Carbon::now();
+        $stats->last_login_at = $event->user->last_seen_at;
         $stats->save();
     }
 
@@ -70,8 +69,7 @@ class SetAttributes
             if ($stats) {
               $previousStats = json_decode($stats->previous_stats, true);
 
-              $event->attributes['ww_lastLoginAt'] = $stats->last_login_at;
-              $event->attributes['ww_previousLoginAt'] = $stats->previous_login_at;
+              $event->attributes['ww_previousLoginAt'] = $event->formatDate($stats->previous_login_at);
               $event->attributes['ww_lastLoginDiscussionsCount'] = $previousStats['discussions'];
               $event->attributes['ww_lastLoginPostsCount'] = $previousStats['posts'];
               $event->attributes['ww_lastLoginUsersCount'] = $previousStats['users'];

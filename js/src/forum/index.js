@@ -7,8 +7,7 @@ import formatNumber from 'flarum/utils/formatNumber';
 import UserDropdown from './components/UserDropdown';
 import User from 'flarum/models/User';
 import Model from 'flarum/Model';
-import humanTime from 'flarum/helpers/humanTime';
-import extractText from 'flarum/utils/extractText';
+import humanTime from 'flarum/utils/humanTime';
 import AvatarEditor from 'flarum/components/AvatarEditor';
 
 const localePrefix = 'the-turk-welcome-widgets.forum.';
@@ -17,7 +16,7 @@ app.initializers.add('the-turk-welcome-widgets', () => {
   User.prototype.ww_lastLoginDiscussionsCount = Model.attribute('ww_lastLoginDiscussionsCount');
   User.prototype.ww_lastLoginPostsCount = Model.attribute('ww_lastLoginPostsCount');
   User.prototype.ww_lastLoginUsersCount = Model.attribute('ww_lastLoginUsersCount');
-  User.prototype.ww_previousLoginAt = Model.attribute('ww_previousLoginAt');
+  User.prototype.ww_previousLoginAt = Model.attribute('ww_previousLoginAt', Model.transformDate);
 
   var getGreetingTime = (currentTime, user) => {
     let localeKey = 'welcome';
@@ -163,7 +162,7 @@ app.initializers.add('the-turk-welcome-widgets', () => {
                     <span className={changeInfo.badgeClass}>{changeInfo.percentage}</span>
                     <p className="stats-since">
                       {app.translator.trans(localePrefix + 'sinceLastVisit', {
-                        span: <span title={extractText(humanTime(user.ww_previousLoginAt().date))} className="stats-since--text" />,
+                        span: <span title={humanTime(user.ww_previousLoginAt())} className="stats-since--text" />,
                       })}
                     </p>
                   </div>
