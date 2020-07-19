@@ -44,7 +44,14 @@ app.initializers.add('the-turk-welcome-widgets', () => {
     let keyword, icon, percentage;
 
     if (previousCount == 0) {
-      percentage = 0;
+      if (currentCount > 0) {
+        // Going from 'not being' into 'being' is not a **change** of being,
+        // it is instead **creation** of being. But I'll indicate this situation
+        // as there is 100% increase to make it more 'charming'
+        percentage = 100;
+      } else {
+        percentage = 0;
+      }
     } else {
       percentage = ((currentCount - previousCount) / previousCount) * 100;
     }
@@ -53,15 +60,23 @@ app.initializers.add('the-turk-welcome-widgets', () => {
       keyword = 'up';
       icon = 'fas fa-chevron-up';
     } else if (percentage < 0) {
-      percentage = percentage * -1;
       keyword = 'down';
       icon = 'fas fa-chevron-down';
+      percentage = percentage * -1;
     } else {
       keyword = 'neutral';
       icon = 'fas fa-minus';
     }
 
-    percentage = percentage.toFixed(1) + '%';
+    if (percentage > 100) {
+      percentage = '> 100';
+    } else if (percentage > 0 && percentage < 0.1) {
+      percentage = '< 0.1';
+    } else {
+      percentage = percentage.toFixed(1).toString();
+    }
+
+    percentage = percentage + '%';
     icon = iconHelper(icon + ' stats-' + keyword);
     const badgeClass = 'stats-badge stats-' + keyword + ' stats-badge--' + keyword;
 
