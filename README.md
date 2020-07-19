@@ -25,6 +25,9 @@ php flarum cache:clear
 
 Just enable the extension.
 
+**Known issues:**
+- Widgets won't show up when you login via an external identity provider (like GitHub, Twitter, Facebook etc.) due to a bug in [flarum/core](https://github.com/flarum/core/issues/1994).
+
 ## Links
 
 - [Flarum Discuss post](https://discuss.flarum.org/d/24496-welcome-widgets)
